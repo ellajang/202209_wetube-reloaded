@@ -130,6 +130,7 @@ export const getLogin = (req,res) => res.render("login",{pageTitle:"Login"});
 export const edit = (req,res) => res.send("Edit User");
 export const logout = (req,res) => {
     req.session.destroy();
+    req.flash("info","Bye bye")
     return res.redirect("/");
 };
 export const getEdit = (req,res) => {
@@ -168,6 +169,7 @@ export const postEdit = async(req,res) => {
 
 export const getChangePassword = (req,res) => {
     if(req.session.user.socialOnly === true){
+        req.flash("error","Can't change password.");
         return res.redirect("/");
     }
     return res.render("users/change-password", {pageTitle:"Change Password"});
@@ -196,6 +198,7 @@ export const postChangePassword = async (req,res) => {
 
     user.password = newPassword; 
     await user.save();
+    req.flash("info","Password Updated")
     return res.redirect("/users/logout");
 };
 

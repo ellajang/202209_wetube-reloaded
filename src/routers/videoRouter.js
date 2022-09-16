@@ -8,6 +8,13 @@ const videoRouther = express.Router();
 videoRouther.get("/:id([0-9a-f]{24})",watch);
 videoRouther.route("/:id([0-9a-f]{24})/edit").all(protectorMiddleware).get(getEdit).post(postEdit);
 videoRouther.route("/:id([0-9a-f]{24})/delete").all(protectorMiddleware).get(deleteVideo);
-videoRouther.route("/upload").all(protectorMiddleware).get(getUpload).post(videoUpload.single("video"),postUpload);
+videoRouther.route("/upload").all(protectorMiddleware).get(getUpload).post(
+    videoUpload.fields([
+    {name:"video"},
+    {name:"thumb"}
+]),
+postUpload
+);
+
 export default videoRouther;
 
