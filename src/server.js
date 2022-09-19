@@ -1,4 +1,4 @@
-import express from "express";
+import express, { text } from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import session from "express-session";
@@ -17,6 +17,7 @@ app.set("view engine","pug");
 app.set("views",process.cwd()+"/src/views");
 app.use(logger);
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 app.use((req,res,next) => {
     res.header("Cross-Origin-Embedder-Policy","require-corp");

@@ -131,7 +131,7 @@ export const edit = (req,res) => res.send("Edit User");
 export const logout = (req,res) => {
     req.session.destroy();
     req.flash("info","Bye bye")
-    return res.redirect("/");
+    return res.redirect("/");   
 };
 export const getEdit = (req,res) => {
     return res.render("edit-profile",{pageTitle:"Edit Profile"});
