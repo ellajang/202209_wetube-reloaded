@@ -1,5 +1,8 @@
+import { async } from "regenerator-runtime";
+
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
+const deleteBtns = document.querySelectorAll(".fa-trash-alt");
 
 const addComment = (text, id) => {
     const videoComments = document.querySelector(".video__comments ul");
@@ -11,7 +14,7 @@ const addComment = (text, id) => {
     const span = document.createElement("span");
     span.innerText = ` ${text}`;
     const span2 = document.createElement("span");
-    span2.innerText = "❌";
+    span2.className = "far fa-trash-alt";
     newComment.appendChild(icon);
     newComment.appendChild(span);
     newComment.appendChild(span2);
@@ -39,6 +42,26 @@ const handleSubmit = async (event) => {
         addComment(text, newCommentId);
     }
 };
+
+const handleDelete = async(event)=>{
+    const{
+        target:{parentElement:deleteComment}
+    }=event;
+    const{
+        dataset:{id},
+    }=deleteComment;
+
+    deleteComment.remove();
+
+    await fetch(`/api/comment/${id}/delete`,{
+        method:"DELETE",
+    });
+};
+
+deleteBtns.forEach((btn)=>{
+    btn.addEventListener("click",handleDelete);
+});
+
 if(form){
     form.addEventListener("submit",handleSubmit);
 }

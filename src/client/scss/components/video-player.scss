@@ -51,4 +51,55 @@
         }
 
     }
+};
+.video__data{
+    display: flex;
+    .edit{
+        position: absolute;
+        right: 260px;
+    }
+    .delete{
+        position: absolute;
+        right: 260px;
+        top: 850px;
+        }
 }
+.video__add-comments{
+    display: flex;
+    margin-top: 10px;
+}
+#commentForm{
+    display: flex;
+    width: max-content;
+    height: 90px;
+    .textarea{
+        display: flex;
+    }
+    .button{
+        cursor: pointer;
+    }
+}
+.video__comments{
+    display: flex;
+    margin: 0 auto;
+    margin-top: 20px;
+    max-width: 60%;
+    .plz{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .video__comment{
+        display: flex; 
+        justify-content:space-between;
+        width: 100%;
+        padding: 20px;
+        border-bottom: 2px solid;
+        .far.fa-trash-alt{
+            cursor: pointer;
+        }
+    }
+}
+
+

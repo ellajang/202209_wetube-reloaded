@@ -129,8 +129,10 @@ export const finishGithubLogin = async (req,res) => {
 export const getLogin = (req,res) => res.render("login",{pageTitle:"Login"});
 export const edit = (req,res) => res.send("Edit User");
 export const logout = (req,res) => {
-    req.session.destroy();
-    req.flash("info","Bye bye")
+    req.session.user = null;
+    res.locals.loggedInUser = req.session.user;
+    req.session.loggedIn=false;
+    req.flash("info","Bye bye");
     return res.redirect("/");   
 };
 export const getEdit = (req,res) => {
@@ -198,7 +200,7 @@ export const postChangePassword = async (req,res) => {
 
     user.password = newPassword; 
     await user.save();
-    req.flash("info","Password Updated")
+    req.flash("success","Password Updated")
     return res.redirect("/users/logout");
 };
 

@@ -69,4 +69,12 @@ main{
         background-color: tomato;
         color: white;
     }
+    &.success{
+        background-color: green;
+        color: white;
+    }
+    &.info{
+        background-color: teal;
+        color: white;
+    }
 }

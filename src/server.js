@@ -1,14 +1,15 @@
-import express, { text } from "express";
+import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import session from "express-session";
 import flash from "express-flash";
-import MongoStroe from  "connect-mongo";
+import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import videoRouther from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
-import { localsMiddleware } from "./middlewares";
 import apiRouter from "./routers/apiRouter";
+import { localsMiddleware } from "./middlewares";
+
 
 const app = express();
 const logger = morgan("dev");
@@ -30,7 +31,7 @@ app.use(
         secret:process.env.COOKIE_SECRET,
         resave: false,
         saveUninitialized: false,
-        store:MongoStroe.create({mongoUrl : process.env.DB_URL}),
+        store:MongoStore.create({mongoUrl : process.env.DB_URL}),
     })
 );
 
